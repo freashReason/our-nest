@@ -21,13 +21,16 @@ Page({
     if (options.id) {
        this.setData({ itemId: options.id });
        wx.setNavigationBarTitle({ title: `打卡 - ${options.title || ''}` });
+       
+       // If viewing a completed item, fetch its record
+       this.fetchRecord(options.id);
     }
 
     const today = new Date().toISOString().split('T')[0];
     this.setData({
       completionDate: today
     });
-    // ... rest of onLoad
+
     recorderManager.onStop((res) => {
       console.log('recorder stop', res);
       this.setData({
@@ -35,6 +38,46 @@ Page({
         audioDuration: Math.round(res.duration / 1000)
       });
     });
+  },
+
+  fetchRecord(itemId) {
+    wx.cloud.callFunction({
+      name: 'nestFunctions',
+      data: {
+        type: 'wishlist',
+        action: 'getRecord',
+        payload: { itemId }
+      }
+    }).then(res => {
+      if (res.result.code === 0 && res.result.data) {
+        const record = res.result.data;
+        // Transform record data back to page data
+        // For media, we might need to map fileID to tempFilePath or just use fileID for display
+        // Note: For real display, image src supports fileID directly.
+        // But for 'chooseMedia' previews, it expects tempFilePath. 
+        // We'll just set it for display for now, assuming editing isn't allowed for completed items.
+        
+        const mediaList = (record.mediaList || []).map(m => ({
+          type: m.type,
+          thumbTempFilePath: m.fileID, // Image component supports fileID
+          tempFilePath: m.fileID,
+          fileID: m.fileID
+        }));
+
+        this.setData({
+          isViewMode: true, // New flag to disable editing
+          completionDate: record.completionDate,
+          partnerConfirmed: record.partnerConfirmed,
+          mediaList: mediaList,
+          audioPath: record.audioFileID || '',
+          audioDuration: record.audioDuration || 0,
+          selectedMood: record.selectedMood || '',
+          summary: record.summary || '',
+          cost: record.cost || '',
+          location: record.location || null
+        });
+      }
+    }).catch(console.error);
   },
 
   bindDateChange(e) {

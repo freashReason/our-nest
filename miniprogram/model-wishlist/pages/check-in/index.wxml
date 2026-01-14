@@ -3,13 +3,13 @@
   <view class="card">
     <view class="form-item">
       <text class="label">完成日期</text>
-      <picker mode="date" value="{{completionDate}}" bindchange="bindDateChange">
+      <picker mode="date" value="{{completionDate}}" bindchange="bindDateChange" disabled="{{isViewMode}}">
         <view class="picker-value">{{completionDate}}</view>
       </picker>
     </view>
     <view class="form-item">
       <text class="label">双方确认</text>
-      <switch checked="{{partnerConfirmed}}" color="#48c7fe" bindchange="toggleConfirmation" />
+      <switch checked="{{partnerConfirmed}}" color="#48c7fe" bindchange="toggleConfirmation" disabled="{{isViewMode}}" />
     </view>
   </view>
 
@@ -21,10 +21,10 @@
         <view class="media-item" bindtap="previewMedia" data-index="{{index}}">
           <image src="{{item.thumbTempFilePath}}" mode="aspectFill" class="media-thumb"></image>
           <view wx:if="{{item.type === 'video'}}" class="video-tag">▶</view>
-          <view class="delete-btn" catchtap="deleteMedia" data-index="{{index}}">×</view>
+          <view class="delete-btn" catchtap="deleteMedia" data-index="{{index}}" wx:if="{{!isViewMode}}">×</view>
         </view>
       </block>
-      <view class="media-add" bindtap="chooseMedia" wx:if="{{mediaList.length < 9}}">
+      <view class="media-add" bindtap="chooseMedia" wx:if="{{!isViewMode && mediaList.length < 9}}">
         <text class="plus">+</text>
       </view>
     </view>
@@ -33,16 +33,16 @@
   <!-- Section 3: Audio & Mood -->
   <view class="card">
     <view class="section-title">语音感想</view>
-    <view class="audio-box" wx:if="{{!audioPath}}">
+    <view class="audio-box" wx:if="{{!audioPath && !isViewMode}}">
       <button class="record-btn {{isRecording ? 'recording' : ''}}" 
         bindtouchstart="startRecord" 
         bindtouchend="stopRecord">
         {{isRecording ? '松开 结束' : '按住 录音 (30s)'}}
       </button>
     </view>
-    <view class="audio-player" wx:else>
+    <view class="audio-player" wx:if="{{audioPath}}">
       <view class="play-btn" bindtap="playRecord">▶ {{audioDuration}}s</view>
-      <view class="delete-icon" bindtap="deleteRecord">🗑️</view>
+      <view class="delete-icon" bindtap="deleteRecord" wx:if="{{!isViewMode}}">🗑️</view>
     </view>
 
     <view class="section-title mt-20">当下心情</view>
@@ -50,7 +50,7 @@
       <view class="mood-list">
         <view wx:for="{{moods}}" wx:key="*this" 
           class="mood-item {{selectedMood === item ? 'selected' : ''}}"
-          bindtap="selectMood" data-mood="{{item}}">
+          bindtap="{{isViewMode ? '' : 'selectMood'}}" data-mood="{{item}}">
           {{item}}
         </view>
       </view>
@@ -62,24 +62,24 @@
     <view class="form-item col">
       <text class="label">一句话总结</text>
       <textarea class="summary-input" placeholder="记录有趣瞬间..." 
-        bindinput="inputSummary" value="{{summary}}" maxlength="100"></textarea>
+        bindinput="inputSummary" value="{{summary}}" maxlength="100" disabled="{{isViewMode}}"></textarea>
     </view>
     <view class="form-item">
       <text class="label">花费金额</text>
-      <input type="digit" placeholder="0.00" class="input-right" bindinput="inputCost" value="{{cost}}" />
+      <input type="digit" placeholder="0.00" class="input-right" bindinput="inputCost" value="{{cost}}" disabled="{{isViewMode}}" />
       <text class="unit">元</text>
     </view>
-    <view class="form-item" bindtap="chooseLocation">
+    <view class="form-item" bindtap="{{isViewMode ? '' : 'chooseLocation'}}">
       <text class="label">地点标记</text>
       <view class="location-value {{location ? '' : 'placeholder'}}">
         {{location ? location.name : '点击选择地点'}}
-        <text class="arrow">></text>
+        <text class="arrow" wx:if="{{!isViewMode}}">></text>
       </view>
     </view>
   </view>
 
   <view class="footer-spacer"></view>
-  <view class="footer">
+  <view class="footer" wx:if="{{!isViewMode}}">
     <button class="submit-btn" bindtap="submitForm">完成打卡</button>
   </view>
 </view>

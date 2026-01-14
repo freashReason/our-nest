@@ -60,6 +60,18 @@ exports.main = async (event, context) => {
         });
 
         return { code: 0, msg: '打卡成功' };
+
+      case 'getRecord':
+        const recordRes = await db.collection('wishlist_records')
+          .where({ itemId: payload.itemId })
+          .limit(1)
+          .get();
+          
+        if (recordRes.data.length > 0) {
+          return { code: 0, data: recordRes.data[0] };
+        } else {
+          return { code: 0, data: null }; // No record found
+        }
         
       default:
         return { code: -1, msg: 'Unknown wishlist action' };
