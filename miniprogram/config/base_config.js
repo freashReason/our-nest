@@ -9,9 +9,9 @@ module.exports = {
   "request_trial": "",
   "request_release": "",
   // 云开发环境id配置（替换为自己的）
-  "wx_cloud_env_develop": "love-5g5cj2fu3bdecde9",
-  "wx_cloud_env_trial": "love-5g5cj2fu3bdecde9",
-  "wx_cloud_env_release": "love-5g5cj2fu3bdecde9",
+  "wx_cloud_env_develop": "cloud1-7gxgez253ddecbc7",
+  "wx_cloud_env_trial": "cloud1-7gxgez253ddecbc7",
+  "wx_cloud_env_release": "cloud1-7gxgez253ddecbc7",
   // 应用信息
   "nest_app_id": "",
   "nest_app_key": ""

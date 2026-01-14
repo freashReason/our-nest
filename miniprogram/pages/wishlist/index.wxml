@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <text class="title">100件小事</text>
+    <text class="subtitle">和你一起完成的每一件小事，都是大事</text>
+  </view>
+
+  <view class="list">
+    <block wx:for="{{wishlist}}" wx:key="id">
+      <view class="item {{item.completed ? 'completed' : ''}}" bindtap="goCheckIn" data-item="{{item}}">
+        <view class="item-left">
+          <text class="item-icon">{{item.icon}}</text>
+          <text class="item-title">{{item.title}}</text>
+        </view>
+        <view class="item-right">
+          <text class="status-tag" wx:if="{{item.completed}}">已完成</text>
+          <text class="arrow">></text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+
+  <view class="fab-btn" bindtap="onAddWish">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

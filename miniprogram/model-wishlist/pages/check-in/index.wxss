@@ -1,0 +1,251 @@
+.container {
+  padding: 20rpx;
+  padding-bottom: 120rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-item.col {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.picker-value {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+  color: #333;
+}
+
+/* Media Grid */
+.media-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.media-item, .media-add {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 10rpx;
+  border-radius: 12rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.media-add {
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed #ddd;
+}
+
+.plus {
+  font-size: 60rpx;
+  color: #ccc;
+  font-weight: 300;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 10rpx;
+  font-size: 24rpx;
+}
+
+.video-tag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+/* Audio */
+.record-btn {
+  width: 100%;
+  background: #f0f9ff;
+  color: #48c7fe;
+  border: 2rpx solid #48c7fe;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  transition: all 0.2s;
+}
+
+.record-btn.recording {
+  background: #48c7fe;
+  color: #fff;
+  transform: scale(0.98);
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 20rpx 30rpx;
+  border-radius: 40rpx;
+  justify-content: space-between;
+}
+
+.play-btn {
+  color: #333;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.delete-icon {
+  padding: 10rpx;
+  opacity: 0.6;
+}
+
+/* Mood */
+.mood-scroll {
+  width: 100%;
+  white-space: nowrap;
+  padding: 10rpx 0;
+}
+
+.mood-list {
+  display: inline-flex;
+}
+
+.mood-item {
+  width: 90rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: #f7f7f7;
+  transition: all 0.2s;
+}
+
+.mood-item.selected {
+  background: #e1f5fe;
+  border: 2rpx solid #48c7fe;
+  transform: scale(1.1);
+}
+
+/* Inputs */
+.summary-input {
+  width: 100%;
+  padding: 20rpx;
+  background: #f9f9f9;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  min-height: 160rpx;
+  box-sizing: border-box;
+}
+
+.input-right {
+  text-align: right;
+  flex: 1;
+  margin: 0 10rpx;
+  font-size: 30rpx;
+}
+
+.unit {
+  color: #333;
+}
+
+.location-value {
+  color: #333;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  max-width: 70%;
+}
+
+.location-value.placeholder {
+  color: #999;
+}
+
+.arrow {
+  color: #ccc;
+  margin-left: 10rpx;
+}
+
+.footer-spacer {
+  height: 100rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx;
+  background: #fff;
+  box-shadow: 0 -4rpx 10rpx rgba(0,0,0,0.05);
+  padding-bottom: calc(30rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(30rpx + env(safe-area-inset-bottom));
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #48c7fe, #10aeff);
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 8rpx 20rpx rgba(72, 199, 254, 0.3);
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}

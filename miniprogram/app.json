@@ -3,7 +3,8 @@
     "pages/home/index",
     "pages/personal/index",
     "pages/album/index",
-    "pages/install/index"
+    "pages/install/index",
+    "pages/wishlist/index"
   ],
   "subPackages": [
     {
@@ -25,6 +26,12 @@
       "pages": [
         "pages/detail/index",
         "pages/setting/index"
+      ]
+    },
+    {
+      "root": "model-wishlist",
+      "pages": [
+        "pages/check-in/index"
       ]
     }
   ],
@@ -49,6 +56,12 @@
         "iconPath": "static/images/tabbar/tab1.png",
         "selectedIconPath": "static/images/tabbar/tab1-s.png",
         "text": "动态"
+      },
+      {
+        "pagePath": "pages/wishlist/index",
+        "iconPath": "static/images/tabbar/tab1.png",
+        "selectedIconPath": "static/images/tabbar/tab1-s.png",
+        "text": "清单"
       },
       {
         "pagePath": "pages/album/index",
